@@ -1,12 +1,25 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     margin: 0;
     background-image: url(img/background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Pretendard-Regular';;
 }
 
 .container {
-    background-color: #fff;
+    background-color: #fff7;
     min-height: 100vh;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
@@ -15,14 +28,40 @@ h1 {
     text-align: center;
     margin: 20px;
     padding: 20px;
+    color: steelblue;
 }
 
 .input_area {
     text-align: center;
+    margin-bottom: 30px;
+}
+
+#task_input {
+    width: 85%;
+    height: 3em;
+    border: none;
+}
+
+#add_button {
+    border: 3px solid lightblue;
+    width: 10%;
+    height: 3em;
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+#add_button:hover {
+    background-color: lightblue;
 }
 
 .task_area {
     border: 1px solid lightblue;
+}
+
+.fa-pen-to-square,
+.fa-check,
+.fa-trash {
+    color: steelblue;
 }
 
 .task_tabs {
@@ -33,6 +72,7 @@ h1 {
 
 .task_tabs > div {
     cursor: pointer;
+    color: steelblue;
 }
 
 .task_tabs div {
@@ -53,12 +93,34 @@ h1 {
 .task {
     display: flex;
     justify-content:space-between;
-    padding: 1em;
+    /* padding: 1em; */
     border-bottom: 1px solid lightblue;
+    align-items: center;
+}
+
+.task span {
+    line-height: 3em;
+    margin-left: 1em;
 }
 
 .task_done {
     text-decoration: line-through;
     opacity: 0.5;
+    background-color: #ddd;
+}
+
+.task div {
+    display: flex;
+    gap: 0;
+}
+
+.task button {
+    width: 3em;
+    height: 3em;
+    border: none;
+    background-color: transparent;
+}
+
+.task button:hover {
     background-color: lightblue;
 }
