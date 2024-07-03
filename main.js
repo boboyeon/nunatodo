@@ -19,7 +19,7 @@ let filterList = [];
 let underLine = document.getElementById("under_line");
 
 addButton.addEventListener("click", addTask);
-taskInput.addEventListener('keydown', function(event) {
+taskInput.addEventListener("keydown", function(event) {
     if (event.key === 'Enter') {
         addTask(); // "Enter" 키를 눌렀을 때 처리할 함수 호출
     }
@@ -71,10 +71,10 @@ function render() {
   let resultHTML = ""; // HTML을 다시 그려주는 기능,taskList 기준으로
   for (let i = 0; i < list.length; i++) {
     if (list[i].isComplete) {
-      resultHTML += `<div class="task">
-                <div class="task_done">${list[i].taskContent}</div> 
+      resultHTML += `<div class="task task_done">
+                <div>${list[i].taskContent}</div> 
                 <div>
-                    <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+                    <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-rotate-right"></i></button>
                     <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>`;
@@ -104,7 +104,7 @@ function toggleComplete(id) {
       break;
     }
   }
-  render(); // UI 업데이트, 다시 render 함수를 실행
+  filter(); // UI 업데이트, 다시 render 함수를 실행
   console.log(taskList);
 }
 
@@ -113,11 +113,11 @@ function deleteTask(id) {
   for (let i = 0; i < taskList.length; i++) {
     if (taskList[i].id == id) {
       taskList.splice(i, 1); // 해당 인덱스를 잘라냄,(i번째 있는 아이템, 1개)
-      break;
+     // break;
     }
   }
   console.log(taskList);
-  render(); // UI 업데이트, 다시 render 함수를 실행
+  filter(); // UI 업데이트, 다시 render 함수를 실행
 }
 
 function filter(event){ // event를 매개변수로 받음, 누구를 클릭했는지에 대한 정보
