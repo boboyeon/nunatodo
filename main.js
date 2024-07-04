@@ -53,7 +53,30 @@ function addTask() {
   taskList.push(task);
   console.log(taskList);
   taskInput.value = '';
-  render();
+  //render();
+  showFilterList(); // 탭에도 task 추가 ui가 업데이트 되도록
+}
+
+function showFilterList() {
+  filterList = []; // filterList를 초기화
+  // 현재 모드에 따라 filterList 업데이트
+  if (mode === "all") {
+    filterList = taskList.slice(); // taskList 전체를 복사하여 filterList에 할당
+} else if (mode === "ongoing") {
+    for (let i = 0; i < taskList.length; i++) {
+        if (!taskList[i].isComplete) {
+            filterList.push(taskList[i]); // isComplete가 false인 항목만 filterList에 추가
+        }
+    }
+} else if (mode === "done") {
+    for (let i = 0; i < taskList.length; i++) {
+        if (taskList[i].isComplete) {
+            filterList.push(taskList[i]); // isComplete가 true인 항목만 filterList에 추가
+        }
+    }
+}
+
+render(); // UI 업데이트
 }
 
 
@@ -107,17 +130,18 @@ function toggleComplete(id) {
   filter(); // UI 업데이트, 다시 render 함수를 실행
   console.log(taskList);
 }
-
+// deleteTas가 각 id를 알게 id를 매개변수로 받음
 function deleteTask(id) {
-  // deleteTas가 각 id를 알게 id를 매개변수로 받음
-  for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].id == id) {
-      taskList.splice(i, 1); // 해당 인덱스를 잘라냄,(i번째 있는 아이템, 1개)
-     // break;
+  if (confirm('이 할 일을 삭제할까요?')){
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].id == id) {
+        taskList.splice(i, 1); // 해당 인덱스를 잘라냄,(i번째 있는 아이템, 1개)
+       // break;
+      }
     }
+    console.log(taskList);
+    filter(); // UI 업데이트, 다시 render 함수를 실행
   }
-  console.log(taskList);
-  filter(); // UI 업데이트, 다시 render 함수를 실행
 }
 
 function filter(event){ // event를 매개변수로 받음, 누구를 클릭했는지에 대한 정보
