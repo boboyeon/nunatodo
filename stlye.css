@@ -1,4 +1,4 @@
-@font-face {
+ @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
@@ -41,7 +41,7 @@ h1 {
 .input_area input {
     /* text-align: center; */
     padding-left: 20px;
-}
+ }
 
 #task_input {
     width: 90%;
@@ -102,7 +102,7 @@ h1 {
     /* padding: 1em; */
     border-bottom: 1px solid lightblue;
     align-items: center;
-}
+ }
 
 .task span {
     line-height: 3em;
@@ -130,3 +130,4 @@ h1 {
 .task button:hover {
     background-color: lightblue;
 }
+
