@@ -39,7 +39,7 @@ console.log(tabs);
 
 
 function addTask() {
-  let taskValue = taskInput.value;
+  let taskValue = taskInput.value.trim(); // trim() 추가, 문자열의 앞뒤 공백제거, 공백입력 문제 방지
   if (taskValue === "") {
         alert ("할 일을 입력해주세요!");
         return;
@@ -75,7 +75,6 @@ function showFilterList() {
         }
     }
 }
-
 render(); // UI 업데이트
 }
 
@@ -127,7 +126,7 @@ function toggleComplete(id) {
       break;
     }
   }
-  filter(); // UI 업데이트, 다시 render 함수를 실행
+  filter(); // UI 업데이트, 다시 함수를 실행
   console.log(taskList);
 }
 // deleteTas가 각 id를 알게 id를 매개변수로 받음
@@ -136,11 +135,11 @@ function deleteTask(id) {
     for (let i = 0; i < taskList.length; i++) {
       if (taskList[i].id == id) {
         taskList.splice(i, 1); // 해당 인덱스를 잘라냄,(i번째 있는 아이템, 1개)
-       // break;
+        break;
       }
     }
     console.log(taskList);
-    filter(); // UI 업데이트, 다시 render 함수를 실행
+    showFilterList(); // UI 업데이트, 다시 함수를 실행, 코드 단순화, 일관성 유지
   }
 }
 
@@ -153,31 +152,9 @@ function filter(event){ // event를 매개변수로 받음, 누구를 클릭했�
         underLine.style.top =
             event.target.offsetTop + (event.target.offsetHeight) - 3 + "px";
     } 
-    filterList = []; // task.isComplete=false or true인 아이템만 모아놓은 변수
-    if(mode === "all"){
-        // 전체리스트를 보여준다
-        render();
-    }else if(mode === "ongoing"){
-        // 진행중인 아이템을 보여준다.
-        // task.isComplete=false 인 아이템을 보여준다
-        for(let i=0; i<taskList.length; i++){ // taskList를 돌면서
-            if(taskList[i].isComplete === false){ // 값이 false와 같은 인덱스를 찾아
-                filterList.push(taskList[i]) // filterList에 추가해준다
-            }
-        }
-        render();
-        console.log("진행중",filterList);
-    }else if(mode === "done"){
-        // 끝나는 아이템을 보여준다
-        // task.isComplete=true 인 아이템을 보여준다
-        for(let i=0; i<taskList.length; i++){
-            if(taskList[i].isComplete === true){ // 값이 true와 같은 인덱스를 찾아
-                filterList.push(taskList[i]) // filterList에 추가해준다
-            }
-        }
-        render();
-        console.log("끝남",filterList);
-    }
+    showFilterList();
+    // filter 함수를 간략화, showFilterList 함수를 실행
+    // filter 함수의 역할 : 탭 모드 설정, 언더라인 스타일 업데이트, 필터리스트, UI 업데이트
 }
 
 
